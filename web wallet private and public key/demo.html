@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Wallet - Demo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-wallet"></i>
+                <span>Web Wallet</span>
+            </div>
+            <div class="header-actions">
+                <button class="btn-secondary">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Welcome Section -->
+            <div class="welcome-section" id="welcomeSection" style="display: none;">
+                <div class="welcome-content">
+                    <div class="welcome-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h1>Welcome to Web Wallet</h1>
+                    <p>Your secure, decentralized wallet for managing digital assets</p>
+                    <button class="btn-primary" id="createWalletBtn">
+                        <i class="fas fa-plus"></i>
+                        Create New Wallet
+                    </button>
+                </div>
+            </div>
+
+            <!-- Wallet Section (Demo - Always Visible) -->
+            <div class="wallet-section" id="walletSection">
+                <div class="wallet-header">
+                    <h2>Your Wallet</h2>
+                    <button class="btn-secondary" id="backToWelcome">
+                        <i class="fas fa-arrow-left"></i>
+                        Back
+                    </button>
+                </div>
+
+                <!-- Wallet Info -->
+                <div class="wallet-info">
+                    <div class="info-card">
+                        <div class="card-header">
+                            <i class="fas fa-key"></i>
+                            <span>Public Key</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="key-display" id="publicKey">
+                                <span>04a8b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4</span>
+                            </div>
+                            <button class="btn-copy" id="copyPublicKey">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-header">
+                            <i class="fas fa-lock"></i>
+                            <span>Private Key</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="key-display" id="privateKey">
+                                <span>a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0</span>
+                            </div>
+                            <button class="btn-copy" id="copyPrivateKey">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-header">
+                            <i class="fas fa-seedling"></i>
+                            <span>Seed Phrase</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="seed-phrase" id="seedPhrase">
+                                <span class="seed-word">abandon</span>
+                                <span class="seed-word">ability</span>
+                                <span class="seed-word">able</span>
+                                <span class="seed-word">about</span>
+                                <span class="seed-word">above</span>
+                                <span class="seed-word">absent</span>
+                                <span class="seed-word">absorb</span>
+                                <span class="seed-word">abstract</span>
+                                <span class="seed-word">absurd</span>
+                                <span class="seed-word">abuse</span>
+                                <span class="seed-word">access</span>
+                                <span class="seed-word">accident</span>
+                            </div>
+                            <button class="btn-copy" id="copySeedPhrase">
+                                <i class="fas fa-copy"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="wallet-actions">
+                    <button class="btn-primary" id="regenerateWallet">
+                        <i class="fas fa-refresh"></i>
+                        Generate New Wallet
+                    </button>
+                    <button class="btn-secondary" id="exportWallet">
+                        <i class="fas fa-download"></i>
+                        Export Wallet
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 Web Wallet. Secure by design.</p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastMessage">Copied to clipboard!</span>
+        </div>
+    </div>
+
+    <script>
+        // Demo functionality for copy buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const copyButtons = document.querySelectorAll('.btn-copy');
+            const toast = document.getElementById('toast');
+            
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Show toast notification
+                    toast.classList.add('show');
+                    
+                    // Hide toast after 3 seconds
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 3000);
+                });
+            });
+
+            // Back button functionality
+            document.getElementById('backToWelcome').addEventListener('click', function() {
+                document.getElementById('walletSection').style.display = 'none';
+                document.getElementById('welcomeSection').style.display = 'block';
+            });
+
+            // Create wallet button functionality
+            document.getElementById('createWalletBtn').addEventListener('click', function() {
+                document.getElementById('welcomeSection').style.display = 'none';
+                document.getElementById('walletSection').style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

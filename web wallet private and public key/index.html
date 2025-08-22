@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Wallet</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="js/wallet.js" defer></script>
+
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-wallet"></i>
+                <span>Web Wallet</span>
+            </div>
+            <div class="header-actions">
+                <button class="btn-secondary" id="sessionBtn" title="Session Management">
+                    <i class="fas fa-user-shield"></i>
+                </button>
+                <button class="btn-secondary" title="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Welcome Section -->
+            <div class="welcome-section" id="welcomeSection">
+                <div class="welcome-content">
+                    <div class="welcome-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h1>Welcome to Web Wallet</h1>
+                    <p>Your secure, decentralized wallet for managing digital assets</p>
+                    <button class="btn-primary" id="createWalletBtn">
+                        <i class="fas fa-plus"></i>
+                        Create New Wallet
+                    </button>
+                </div>
+            </div>
+
+            <!-- Wallet Section (Hidden by default) -->
+            <div class="wallet-section" id="walletSection" style="display: none;">
+                <div class="wallet-header">
+                    <h2>Your Wallet</h2>
+                    <button class="btn-secondary" id="backToWelcome">
+                        <i class="fas fa-arrow-left"></i>
+                        Back
+                    </button>
+                </div>
+
+                <!-- Wallet Info -->
+                <div class="wallet-info">
+                    <div class="info-card">
+                        <div class="card-header">
+                            <i class="fas fa-key"></i>
+                            <span>Public Key</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="key-display" id="publicKey">
+                                <span class="placeholder">Click "Create Wallet" to generate keys</span>
+                            </div>
+                            <button class="btn-copy" id="copyPublicKey" style="display: none;">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-header">
+                            <i class="fas fa-lock"></i>
+                            <span>Private Key</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="key-display" id="privateKey">
+                                <span class="placeholder">Click "Create Wallet" to generate keys</span>
+                            </div>
+                            <button class="btn-copy" id="copyPrivateKey" style="display: none;">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-header">
+                            <i class="fas fa-seedling"></i>
+                            <span>Seed Phrase</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="seed-phrase" id="seedPhrase">
+                                <span class="placeholder">Click "Create Wallet" to generate seed phrase</span>
+                            </div>
+                            <button class="btn-copy" id="copySeedPhrase" style="display: none;">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="wallet-actions">
+                    <button class="btn-primary" id="regenerateWallet">
+                        <i class="fas fa-refresh"></i>
+                        Generate New Wallet
+                    </button>
+                    <button class="btn-secondary" id="exportWallet">
+                        <i class="fas fa-download"></i>
+                        Export Wallet
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 Web Wallet. Secure by design.</p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastMessage">Action completed successfully</span>
+        </div>
+    </div>
+
+</body>
+</html>
